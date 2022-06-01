@@ -35,7 +35,7 @@ const Events = ({ doRefetch, setDoRefetch }) => {
 
     // rendering calender component here
     return (
-        <section className='mt-20 w-3/5 mx-auto'>
+        <section className='mt-20 w-[95%] md:w-3/5 mx-auto'>
             <h2 className='font-bold text-3xl mb-5'>Event Calendar</h2>
             {
                 isLoading ?

@@ -43,14 +43,14 @@ const CheckInCheckOutForm = ({ setDoRefetch }) => {
         <section className='relative mt-20'>
             <div className='flex justify-center'>
                 <form onSubmit={handleBookEvent}>
-                    <div className='flex'>
+                    <div className='flex flex-col md:flex-row justify-center items-center'>
                         <div className='form-control w-[312px]'>
                             <label className='label'>
                                 <span className='label-text'>Name <span className='text-red-500'>*</span></span>
                             </label>
                             <input name='title' type='text' placeholder='Enter The Event Name' className='input input-bordered w-full' required />
                         </div>
-                        <div className='relative form-control w-[312px] ml-10'>
+                        <div className='relative form-control w-[312px] mt-5 md:mt-0 md:ml-10'>
                             <label className='label'>
                                 <span className='label-text'>Check-in <span className='text-red-500'>*</span></span>
                             </label>
@@ -64,7 +64,7 @@ const CheckInCheckOutForm = ({ setDoRefetch }) => {
                                 />
                             }
                         </div>
-                        <div className='relative form-control w-[312px] ml-10'>
+                        <div className='relative form-control w-[312px] mt-5 md:mt-0 md:ml-10'>
                             <label className='label'>
                                 <span className='label-text'>Check-out <span className='text-red-500'>*</span></span>
                             </label>
