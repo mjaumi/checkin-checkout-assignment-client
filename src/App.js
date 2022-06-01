@@ -11,7 +11,7 @@ function App() {
   const [doRefetch, setDoRefetch] = useState(false);
 
   return (
-    <main className="App">
+    <main className="App" data-theme="dark">
       <CheckInCheckOutForm setDoRefetch={setDoRefetch} />
       <Events doRefetch={doRefetch} setDoRefetch={setDoRefetch} />
       <ToastContainer />

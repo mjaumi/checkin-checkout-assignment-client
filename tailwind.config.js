@@ -9,4 +9,7 @@ module.exports = {
     require('daisyui'),
     require('tw-elements/dist/plugin')
   ],
+  daisyui: {
+    themes: ['dark']
+  },
 }
