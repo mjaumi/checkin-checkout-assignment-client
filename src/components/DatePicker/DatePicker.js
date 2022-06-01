@@ -3,6 +3,7 @@ import { DayPicker } from 'react-day-picker';
 
 const DatePicker = ({ setDate, setShowDatePicker, disableDateTill }) => {
 
+    // counting disabled days
     const disabledDays = { before: disableDateTill };
 
     // event handler for selecting the date
