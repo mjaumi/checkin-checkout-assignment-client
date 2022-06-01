@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { format } from 'date-fns';
 import DatePicker from '../DatePicker/DatePicker';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import Loading from '../Loading/Loading';
 
 const CheckInCheckOutForm = ({ setDoRefetch }) => {
     // integration of react hooks
@@ -9,9 +11,11 @@ const CheckInCheckOutForm = ({ setDoRefetch }) => {
     const [checkOutDate, setCheckOutDate] = useState(new Date());
     const [showCheckInDatePicker, setShowCheckInDatePicker] = useState(false);
     const [showCheckOutDatePicker, setShowCheckOutDatePicker] = useState(false);
+    const [showLoading, setShowLoading] = useState(false);
 
     const handleBookEvent = async (event) => {
         event.preventDefault();
+        setShowLoading(true);
 
         const title = event.target.title.value;
         const start = checkInDate;
@@ -23,14 +27,20 @@ const CheckInCheckOutForm = ({ setDoRefetch }) => {
 
         const { data } = await axios.post('https://boiling-thicket-50389.herokuapp.com/event', newEvent);
 
-        console.log(data);
+        if (data.acknowledged) {
+            toast.success('Event Added Successfully!!!');
+        } else {
+            toast.error('Failed To Add Event!!!');
+        }
+
         event.target.reset();
         setDoRefetch(true);
+        setShowLoading(false);
     }
 
     // rendering calendar component here 
     return (
-        <section className='mt-20'>
+        <section className='relative mt-20'>
             <div className='flex justify-center'>
                 <form onSubmit={handleBookEvent}>
                     <div className='flex'>
@@ -74,6 +84,15 @@ const CheckInCheckOutForm = ({ setDoRefetch }) => {
                     </div>
                 </form>
             </div>
+            {
+                showLoading &&
+                <div>
+                    <div className='absolute top-[250%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999]'>
+                        <Loading />
+                    </div>
+                    <div className='opacity-25 fixed inset-0 z-40 bg-black'></div>
+                </div>
+            }
         </section>
     );
 };

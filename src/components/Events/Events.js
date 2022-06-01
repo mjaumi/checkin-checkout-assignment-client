@@ -7,6 +7,7 @@ import React from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import Loading from '../Loading/Loading';
 require('react-big-calendar/lib/css/react-big-calendar.css');
 
 // setting locales
@@ -27,10 +28,6 @@ const Events = ({ doRefetch, setDoRefetch }) => {
     // integration of react query here
     const { data: events, isLoading, refetch } = useQuery(['events'], () => axios.get('https://boiling-thicket-50389.herokuapp.com/event'));
 
-    if (isLoading) {
-        return <p>Loading...</p>;
-    }
-
     if (doRefetch) {
         refetch();
         setDoRefetch(false);
@@ -39,18 +36,23 @@ const Events = ({ doRefetch, setDoRefetch }) => {
     // rendering calender component here
     return (
         <section className='mt-20 w-3/5 mx-auto'>
-            {console.log(events)}
             <h2 className='font-bold text-3xl mb-5'>Event Calendar</h2>
-
-            <div className='bg-neutral p-5 rounded-xl'>
-                <Calendar
-                    localizer={localizer}
-                    events={events.data}
-                    startAccessor='start'
-                    endAccessor='end'
-                    style={{ height: 500 }}
-                />
-            </div>
+            {
+                isLoading ?
+                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999]'>
+                        <Loading />
+                    </div>
+                    :
+                    <div className='bg-neutral p-5 rounded-xl'>
+                        <Calendar
+                            localizer={localizer}
+                            events={events.data}
+                            startAccessor='start'
+                            endAccessor='end'
+                            style={{ height: 500 }}
+                        />
+                    </div>
+            }
         </section>
     );
 

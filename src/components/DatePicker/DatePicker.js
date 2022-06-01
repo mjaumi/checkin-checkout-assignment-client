@@ -14,7 +14,7 @@ const DatePicker = ({ setDate, setShowDatePicker, disableDateTill }) => {
 
     // rendering date picker component here
     return (
-        <div className='bg-neutral rounded-2xl absolute top-full'>
+        <div className='bg-neutral rounded-2xl absolute top-full z-[999]'>
             <DayPicker
                 mode='single'
                 onSelect={handleSelectDate}
