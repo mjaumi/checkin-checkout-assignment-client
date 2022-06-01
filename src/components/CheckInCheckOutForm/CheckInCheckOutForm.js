@@ -68,7 +68,7 @@ const CheckInCheckOutForm = ({ setDoRefetch }) => {
                             <label className='label'>
                                 <span className='label-text'>Check-out <span className='text-red-500'>*</span></span>
                             </label>
-                            <input name='end' onClick={() => setShowCheckOutDatePicker(!showCheckOutDatePicker)} type='text' placeholder='Select A Date' className='input input-bordered w-full cursor-pointer' readOnly value={format(checkInDate, 'PP') > format(checkOutDate, 'PP') ? format(checkInDate, 'PP') : format(checkOutDate, 'PP')} />
+                            <input name='end' onClick={() => setShowCheckOutDatePicker(!showCheckOutDatePicker)} type='text' placeholder='Select A Date' className='input input-bordered w-full cursor-pointer' readOnly value={checkInDate > checkOutDate ? format(checkInDate, 'PP') : format(checkOutDate, 'PP')} />
                             {
                                 showCheckOutDatePicker &&
                                 <DatePicker
